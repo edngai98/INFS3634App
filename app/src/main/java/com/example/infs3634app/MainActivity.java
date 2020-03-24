@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
             mTwoPane = true;
         }
 
-        RecyclerView mRecyclerView = findViewById(R.id.rvList);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rvList);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
