@@ -1,5 +1,7 @@
 package com.example.infs3634app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +42,7 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
         if (mRest != null) {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
@@ -49,6 +53,26 @@ public class DetailFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.tvAddressField)).setText(mRest.getAddress());
             ((TextView) rootView.findViewById(R.id.tvCusineField)).setText(mRest.getCuisine());
             ((TextView) rootView.findViewById(R.id.tvARField)).setText(String.valueOf(mRest.getAverageRating()));
+            ((Button) rootView.findViewById(R.id.ChangeReviewButton)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder();
+                    View view = getLayoutInflater().inflate(R.layout.user_input, null);
+                    alertBuilder.setView(view);
+                    EditText userInput = (EditText) view.findViewById(R.id.userInput);
+
+                    alertBuilder.setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ((TextView) rootView.findViewById(R.id.tvMyRating)).setText(userInput.getText());;
+                        }
+                    }
+
+                    AlertDialog dialog = alertBuilder.create();
+                    dialog.show();
+
+                }
+            });
             ((ImageView) rootView.findViewById(R.id.ivSearch)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
