@@ -62,7 +62,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
     @Override
     public RestaurantsAdapter.RestaurantViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_rows, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list, parent, false);
         return new RestaurantViewHolder(v);
     }
 
@@ -72,7 +72,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         holder.name.setText(rest.getName());
         holder.cuisine.setText(rest.getCuisine());
         holder.location.setText(rest.getLocation());
-        holder.rating.setText(NumberFormat.getCurrencyInstance().format(rest.getMyRating()));
+        holder.rating.setText(String.valueOf(rest.getMyRating()));
         holder.itemView.setTag(rest);
         holder.itemView.setOnClickListener(mOnClickListener);
 
