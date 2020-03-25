@@ -56,17 +56,17 @@ public class DetailFragment extends Fragment {
             ((Button) rootView.findViewById(R.id.ChangeReviewButton)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder();
+                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
                     View view = getLayoutInflater().inflate(R.layout.user_input, null);
                     alertBuilder.setView(view);
-                    EditText userInput = (EditText) view.findViewById(R.id.userInput);
+                    final EditText userInput = (EditText) view.findViewById(R.id.userInput);
 
                     alertBuilder.setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ((TextView) rootView.findViewById(R.id.tvMyRating)).setText(userInput.getText());;
                         }
-                    }
+                    });
 
                     AlertDialog dialog = alertBuilder.create();
                     dialog.show();
@@ -89,4 +89,6 @@ public class DetailFragment extends Fragment {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=" + name));
         startActivity(intent);
     }
+
+    
 }
