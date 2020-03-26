@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
     private boolean mTwoPane;
@@ -21,8 +23,27 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        RecyclerView.Adapter mAdapter = new RestaurantsAdapter(this, Restaurants.getRestaurants(), mTwoPane);
+        final RecyclerView.Adapter mAdapter = new RestaurantsAdapter(this, Restaurants.getRestaurants(), mTwoPane);
         mRecyclerView.setAdapter(mAdapter);
 
+        SearchView searchView = (SearchView) findViewById(R.id.search_function);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ((RestaurantsAdapter) mAdapter).getFilter().filter(newText);
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 }

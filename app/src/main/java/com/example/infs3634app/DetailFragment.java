@@ -1,7 +1,5 @@
 package com.example.infs3634app;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -22,6 +20,7 @@ import java.text.NumberFormat;
 public class DetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
     private Restaurants mRest;
+
 
     public DetailFragment() {
         // Required empty public constructor
@@ -44,10 +43,14 @@ public class DetailFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
+
         if (mRest != null) {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
             ((TextView) rootView.findViewById(R.id.tvRestName)).setText(mRest.getName());
+            //change this
             ((TextView) rootView.findViewById(R.id.tvMyRating)).setText(String.valueOf(mRest.getMyRating()));
+            //
+            ((RatingBar) rootView.findViewById(R.id.ratingBar2)).setRating(mRest.getMyRating());
             ((TextView) rootView.findViewById(R.id.tvACField)).setText(String.valueOf(mRest.getAverageCost()));
             ((TextView) rootView.findViewById(R.id.tvLocationField)).setText(mRest.getLocation());
             ((TextView) rootView.findViewById(R.id.tvAddressField)).setText(mRest.getAddress());
@@ -56,21 +59,9 @@ public class DetailFragment extends Fragment {
             ((Button) rootView.findViewById(R.id.ChangeReviewButton)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-                    View view = getLayoutInflater().inflate(R.layout.user_input, null);
-                    alertBuilder.setView(view);
-                    final EditText userInput = (EditText) view.findViewById(R.id.userInput);
-
-                    alertBuilder.setCancelable(true).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ((TextView) rootView.findViewById(R.id.tvMyRating)).setText(userInput.getText());;
-                        }
-                    });
-
-                    AlertDialog dialog = alertBuilder.create();
-                    dialog.show();
-
+                    //change the myRating
+                    System.out.println(((RatingBar) rootView.findViewById(R.id.changeRating)).getRating());
+                    mRest.setMyRating(((RatingBar) rootView.findViewById(R.id.changeRating)).getRating());
                 }
             });
             ((ImageView) rootView.findViewById(R.id.ivSearch)).setOnClickListener(new View.OnClickListener() {
@@ -90,5 +81,5 @@ public class DetailFragment extends Fragment {
         startActivity(intent);
     }
 
-    
+
 }

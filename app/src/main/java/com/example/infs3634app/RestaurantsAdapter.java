@@ -7,6 +7,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantViewHolder> {
+public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantViewHolder> implements Filterable {
     private MainActivity mParentActivity;
     private ArrayList<Restaurants> mRestaurants;
+    private ArrayList<Restaurants> fullList;
     private boolean mTwoPane;
+
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -46,6 +51,9 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         mParentActivity = parent;
         mRestaurants = restaurants;
         mTwoPane = twoPane;
+
+        this.fullList = new ArrayList<>(mRestaurants);
+
     }
 
     public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
@@ -81,4 +89,40 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
     @Override
     public int getItemCount() {return mRestaurants.size();}
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Restaurants> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(fullList);
+
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Restaurants restaurants : fullList) {
+                    if(restaurants.getName().toLowerCase().contains(filterPattern) || restaurants.getCuisine().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(restaurants);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mRestaurants.clear();
+            mRestaurants.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
