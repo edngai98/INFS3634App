@@ -3,19 +3,17 @@ package com.example.infs3634app;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +56,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
     public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
         public TextView name, cuisine, location, rating;
+        public RatingBar ratingBar;
 
         public RestaurantViewHolder (View v) {
             super(v);
@@ -65,6 +64,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             cuisine = v.findViewById(R.id.restCusine);
             location = v.findViewById(R.id.restLocation);
             rating = v.findViewById(R.id.restRating);
+            ratingBar = v.findViewById(R.id.ratingCard);
         }
     }
 
@@ -81,6 +81,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         holder.cuisine.setText(rest.getCuisine());
         holder.location.setText(rest.getLocation());
         holder.rating.setText(String.valueOf(rest.getMyRating()));
+        holder.ratingBar.setRating(rest.getMyRating());
         holder.itemView.setTag(rest);
         holder.itemView.setOnClickListener(mOnClickListener);
 

@@ -1,8 +1,10 @@
 package com.example.infs3634app;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Restaurants {
+    //private int mImageResource;
     private String name;
     private String cuisine;
     private String location;
@@ -81,7 +83,10 @@ public class Restaurants {
         restaurants.add(new Restaurants("Boganville", "Australian", "Punchbowl",  4.20f, 3.50f, 10, "88 Eight Avenue"));
         restaurants.add(new Restaurants("YallahEats", "Lebanese", "Kensington",  4.90f, 4.50f, 10, "99 Ninth Avenue"));
 
+        //Collections.sort(restaurants, myRating);
+
         return restaurants;
     }
+
 
 }

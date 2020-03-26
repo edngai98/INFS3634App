@@ -12,13 +12,13 @@
     <include
         layout="@layout/restaurant_list_rows"
         android:layout_width="match_parent"
-        android:layout_height="631dp"
-        android:layout_marginTop="100dp" />
+        android:layout_height="639dp"
+        android:layout_marginTop="50dp" />
 
     <SearchView
         android:id="@+id/search_function"
         android:layout_width="match_parent"
-        android:layout_height="100dp" >
+        android:layout_height="50dp" >
 
     </SearchView>
 

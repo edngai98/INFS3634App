@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.SearchView;
 
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity {
     private boolean mTwoPane;
     @Override
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         final RecyclerView.Adapter mAdapter = new RestaurantsAdapter(this, Restaurants.getRestaurants(), mTwoPane);
         mRecyclerView.setAdapter(mAdapter);
 
+        //creating a search filter on the main activity
         SearchView searchView = (SearchView) findViewById(R.id.search_function);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -46,4 +49,5 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return super.onCreateOptionsMenu(menu);
     }
+
 }

@@ -51,7 +51,7 @@ public class DetailFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.tvMyRating)).setText(String.valueOf(mRest.getMyRating()));
             //
             ((RatingBar) rootView.findViewById(R.id.ratingBar2)).setRating(mRest.getMyRating());
-            ((TextView) rootView.findViewById(R.id.tvACField)).setText(String.valueOf(mRest.getAverageCost()));
+            ((TextView) rootView.findViewById(R.id.tvACField)).setText(String.valueOf("$" +mRest.getAverageCost()));
             ((TextView) rootView.findViewById(R.id.tvLocationField)).setText(mRest.getLocation());
             ((TextView) rootView.findViewById(R.id.tvAddressField)).setText(mRest.getAddress());
             ((TextView) rootView.findViewById(R.id.tvCusineField)).setText(mRest.getCuisine());
@@ -59,9 +59,12 @@ public class DetailFragment extends Fragment {
             ((Button) rootView.findViewById(R.id.ChangeReviewButton)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //change the myRating
+                    //change the myRating on the front end
                     System.out.println(((RatingBar) rootView.findViewById(R.id.changeRating)).getRating());
-                    mRest.setMyRating(((RatingBar) rootView.findViewById(R.id.changeRating)).getRating());
+
+                    ((TextView) rootView.findViewById(R.id.tvMyRating)).setText(String.valueOf(((RatingBar) rootView.findViewById(R.id.changeRating)).getRating()));
+                    ((RatingBar) rootView.findViewById(R.id.ratingBar2)).setRating(((RatingBar) rootView.findViewById(R.id.changeRating)).getRating());
+
                 }
             });
             ((ImageView) rootView.findViewById(R.id.ivSearch)).setOnClickListener(new View.OnClickListener() {
