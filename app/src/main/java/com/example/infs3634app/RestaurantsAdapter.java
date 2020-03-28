@@ -107,7 +107,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Restaurants restaurants : fullList) {
-                    if(restaurants.getName().toLowerCase().contains(filterPattern) || restaurants.getCuisine().toLowerCase().contains(filterPattern)) {
+                    if(restaurants.getName().toLowerCase().contains(filterPattern) || restaurants.getCuisine().toLowerCase().contains(filterPattern) || restaurants.getLocation().toLowerCase().contains(filterPattern)) {
                         filteredList.add(restaurants);
                     }
                 }

@@ -2,6 +2,7 @@ package com.example.infs3634app;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Restaurants {
     //private int mImageResource;
@@ -87,6 +88,42 @@ public class Restaurants {
 
         return restaurants;
     }
+
+    public static Comparator<Restaurants> ByName = new Comparator<Restaurants>() {
+        @Override
+        public int compare(Restaurants one, Restaurants two) {
+
+
+            return - one.name.compareTo(two.name);
+        }
+    };
+
+    public static Comparator<Restaurants> ByRating = new Comparator<Restaurants>() {
+        @Override
+        public int compare(Restaurants one, Restaurants two) {
+
+
+            return - Float.valueOf(one.myRating).compareTo(two.myRating);
+        }
+    };
+
+    public static Comparator<Restaurants> ByCuisine = new Comparator<Restaurants>() {
+        @Override
+        public int compare(Restaurants one, Restaurants two) {
+
+
+            return - one.cuisine.compareTo(two.cuisine);
+        }
+    };
+
+    public static Comparator<Restaurants> ByLocation = new Comparator<Restaurants>() {
+        @Override
+        public int compare(Restaurants one, Restaurants two) {
+
+
+            return - one.location.compareTo(two.location);
+        }
+    };
 
 
 }

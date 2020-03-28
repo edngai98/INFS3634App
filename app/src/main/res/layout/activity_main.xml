@@ -3,6 +3,7 @@
 
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
@@ -12,15 +13,72 @@
     <include
         layout="@layout/restaurant_list_rows"
         android:layout_width="match_parent"
-        android:layout_height="639dp"
-        android:layout_marginTop="50dp" />
+        android:layout_height="615dp"
+        android:layout_marginTop="85dp" />
+
 
     <SearchView
         android:id="@+id/search_function"
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
+        android:layout_height="50dp">
 
     </SearchView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/checkBoxName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:text="Name"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxRating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxRating"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxCuisine" />
+
+        <Button
+            android:id="@+id/checkBoxCuisine"
+            android:layout_width="92dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            android:text="Cuisine"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/checkBoxLocation"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxName" />
+
+        <Button
+            android:id="@+id/checkBoxLocation"
+            android:layout_width="96dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            android:text="Location"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/checkBoxRating"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxCuisine" />
+
+        <Button
+            android:id="@+id/checkBoxRating"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="241dp"
+            android:layout_marginRight="241dp"
+            android:text="Rating"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>
