@@ -13,7 +13,7 @@
     <include
         layout="@layout/restaurant_list_rows"
         android:layout_width="match_parent"
-        android:layout_height="615dp"
+        android:layout_height="651dp"
         android:layout_marginTop="50dp" />
 
 
