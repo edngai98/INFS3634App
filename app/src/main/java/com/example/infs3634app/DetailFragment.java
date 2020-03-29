@@ -56,6 +56,7 @@ public class DetailFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.tvAddressField)).setText(mRest.getAddress());
             ((TextView) rootView.findViewById(R.id.tvCusineField)).setText(mRest.getCuisine());
             ((TextView) rootView.findViewById(R.id.tvARField)).setText(String.valueOf(mRest.getAverageRating()));
+            ((ImageView) rootView.findViewById(R.id.imageView)).setImageResource(mRest.getImage());
             ((Button) rootView.findViewById(R.id.ChangeReviewButton)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

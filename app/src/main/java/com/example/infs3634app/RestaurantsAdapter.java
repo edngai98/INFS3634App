@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
         public TextView name, cuisine, location, rating;
         public RatingBar ratingBar;
+        public ImageView image;
 
         public RestaurantViewHolder (View v) {
             super(v);
@@ -65,6 +67,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             location = v.findViewById(R.id.restLocation);
             rating = v.findViewById(R.id.restRating);
             ratingBar = v.findViewById(R.id.ratingCard);
+            image = v.findViewById(R.id.ivArt);
         }
     }
 
@@ -82,6 +85,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         holder.location.setText(rest.getLocation());
         holder.rating.setText(String.valueOf(rest.getMyRating()));
         holder.ratingBar.setRating(rest.getMyRating());
+        holder.image.setImageResource(rest.getImage());
         holder.itemView.setTag(rest);
         holder.itemView.setOnClickListener(mOnClickListener);
 
